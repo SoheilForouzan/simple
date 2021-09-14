@@ -4,10 +4,10 @@ import requests
 
 
 def inform():
-    api = KavenegarAPI('676631383747544A634556654D653664364D3633322F72424B52342F612B4950344A38724739766A4E36673D')
+    api = KavenegarAPI('api key here') # Kavenegar api key goes here
     params = {
-        'sender': '10004346',
-        'receptor': '9035779383',
+        'sender': 'sender num', # Sender number
+        'receptor': 'receiver', # receptor number
         'message': btc
     }   
     response = api.sms_send(params)
