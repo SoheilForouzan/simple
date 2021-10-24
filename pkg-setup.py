@@ -105,10 +105,9 @@ def arch_termux():
         starting = input("[?] Start Installation? (y -> yes, n -> no) ")
     if starting == "y" or starting == "Y":
         print(f"{green}[+] started{reset_color}\n")
-        for command in termux_arch:
-            print(f"{yellow}[*]{command}:{reset_color}")
-            os.system(command)
-            print(f"{green}[+] Task Done!{reset_color}\n")
+        print(f"{yellow}[*]{termux_arch}:{reset_color}")
+        os.system(termux_arch)
+        print(f"{green}[+] Task Done!{reset_color}\n")
 
     elif starting == "n" or starting == "N":
         print(f"{red}[X] Canceled!{reset_color}")
@@ -127,7 +126,7 @@ def termux_requirements():
         print(f"{green}[+] started{reset_color}\n")
         for requirement in termux_install:
             print(f"{yellow}[*]{requirement}:{reset_color}")
-            os.system(f"apt install {requirement}")
+            os.system(f"pkg install {requirement}")
             print(f"{green}[+] Task Done!{reset_color}\n")
 
     elif starting == "n" or starting == "N":
