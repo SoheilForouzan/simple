@@ -120,7 +120,7 @@ def termux_python():
         starting = input("[?] Start instalation? (y -> yes, n -> no) ")
     if starting == "y" or starting == "Y":
         print(f"{green}[+] started{reset_color}\n")
-        for pkg in termux_install:
+        for pkg in termux_py:
             print(f"{yellow}[*]{pkg}:{reset_color}")
             os.system(f"pip install {pkg}")
             print(f"{green}[+] Task Done!{reset_color}\n")
