@@ -23,7 +23,7 @@ python = [
 ]
 
 # Termux section
-termux_setup = [
+termux_start = [
     "termux-setup-storage", "apt update", "apt upgrade",
 ]
 
@@ -74,17 +74,17 @@ def python_pkgs():
 # Termux Settings Setup
 
 def termux_setup():
-    for object in termux_setup:
-        print(cyan + object + reset_color)
+    for command in termux_start:
+        print(cyan + command + reset_color)
     print("\n")
     starting = ""
     while (starting != "y" and starting != "n"):
         starting = input("[?] Start Setup? (y -> yes, n -> no) ")
     if starting == "y" or starting == "Y":
         print(f"{green}[+] started{reset_color}\n")
-        for object in termux_setup:
-            print(f"{yellow}[*]{object}:{reset_color}")
-            os.system(object)
+        for command in termux_setup:
+            print(f"{yellow}[*]{command}:{reset_color}")
+            os.system(command)
             print(f"{green}[+] Task Done!{reset_color}\n")
 
     elif starting == "n" or starting == "N":
