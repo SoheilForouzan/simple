@@ -40,6 +40,11 @@ termux_py = [
     "datetime", "bs4", "paramiko"
 ]
 
+# Arch on termux
+
+termux_arch = 'pkg install wget openssl-tool proot tar -y && hash -r && wget https://raw.githubusercontent.com/EXALAB/AnLinux-Resources/master/Scripts/Installer/Arch/armhf/arch.sh && bash arch.sh'
+
+
 # Script Flags
 
 parser = argparse.ArgumentParser()
@@ -89,6 +94,25 @@ def termux_setup():
 
     elif starting == "n" or starting == "N":
         print(f"{red}[X] Canceled!{reset_color}")
+
+# Arch linux installation in termux
+
+def arch_termux():
+    print(cyan + "Installtion on arch linux for termux" + reset_color)
+    print("\n")
+    starting = ""
+    while (starting != "y" and starting != "n"):
+        starting = input("[?] Start Installation? (y -> yes, n -> no) ")
+    if starting == "y" or starting == "Y":
+        print(f"{green}[+] started{reset_color}\n")
+        for command in termux_arch:
+            print(f"{yellow}[*]{command}:{reset_color}")
+            os.system(command)
+            print(f"{green}[+] Task Done!{reset_color}\n")
+
+    elif starting == "n" or starting == "N":
+        print(f"{red}[X] Canceled!{reset_color}")
+
 
 # Termux requirements installation
 
@@ -143,6 +167,9 @@ def main():
         termux_requirements()
     elif args.termux == "py":
         termux_python()
+    elif args.termux == "arch":
+        arch_termux()
+
 
 
 if __name__ == "__main__":
