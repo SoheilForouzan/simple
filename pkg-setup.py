@@ -60,31 +60,27 @@ args = parser.parse_args()
 # Linux Python pkg installation
 
 def python_pkgs():
-    for pkg in python:
-        print(cyan + pkg + reset_color)
-    print("\n")
-    starting = ""
-    while (starting != "y" and starting != "n"):
-        starting = input("[?] Start instalation? (y -> yes, n -> no) ")
+
+    starting = input("[?] Start instalation? [Y/n] ") or "Y"
+
     if starting == "y" or starting == "Y":
         print(f"{green}[+] started{reset_color}\n")
         for pkg in python:
             print(f"{yellow}[*]{pkg}:{reset_color}")
-            os.system(f"pip install {pkg}")
+            os.system(f'pip install {pkg}')
             print(f"{green}[+] Task Done!{reset_color}\n")
 
     elif starting == "n" or starting == "N":
         print(f"{red}[X] Canceled!{reset_color}")
+    else:
+        python_pkgs()
 
 # Termux Settings Setup
 
+
 def termux_setup():
-    for command in termux_start:
-        print(cyan + command + reset_color)
-    print("\n")
-    starting = ""
-    while (starting != "y" and starting != "n"):
-        starting = input("[?] Start Setup? (y -> yes, n -> no) ")
+
+    starting = input("[?] Start Setup? [Y/n] ") or "Y"
     if starting == "y" or starting == "Y":
         print(f"{green}[+] started{reset_color}\n")
         for command in termux_start:
@@ -94,15 +90,14 @@ def termux_setup():
 
     elif starting == "n" or starting == "N":
         print(f"{red}[X] Canceled!{reset_color}")
+    else:
+        python_pkgs()
 
 # Arch linux installation in termux
 
 def arch_termux():
-    print(cyan + "Installtion on arch linux for termux" + reset_color)
-    print("\n")
-    starting = ""
-    while (starting != "y" and starting != "n"):
-        starting = input("[?] Start Installation? (y -> yes, n -> no) ")
+
+    starting = input("[?] Start Installation? [Y/n] ") or "Y"
     if starting == "y" or starting == "Y":
         print(f"{green}[+] started{reset_color}\n")
         print(f"{yellow}[*]{termux_arch}:{reset_color}")
@@ -111,17 +106,13 @@ def arch_termux():
 
     elif starting == "n" or starting == "N":
         print(f"{red}[X] Canceled!{reset_color}")
-
+    else:
+        python_pkgs()
 
 # Termux requirements installation
 
 def termux_requirements():
-    for requirement in termux_install:
-        print(cyan + requirement + reset_color)
-    print("\n")
-    starting = ""
-    while (starting != "y" and starting != "n"):
-        starting = input("[?] Start instalation? (y -> yes, n -> no) ")
+    starting = input("[?] Start instalation? [Y/n] ") or "Y"
     if starting == "y" or starting == "Y":
         print(f"{green}[+] started{reset_color}\n")
         for requirement in termux_install:
@@ -131,16 +122,14 @@ def termux_requirements():
 
     elif starting == "n" or starting == "N":
         print(f"{red}[X] Canceled!{reset_color}")
+    else:
+        python_pkgs()
 
 # Termux python dependencies
 
 def termux_python():
-    for pkg in termux_py:
-        print(cyan + pkg + reset_color)
-    print("\n")
-    starting = ""
-    while (starting != "y" and starting != "n"):
-        starting = input("[?] Start instalation? (y -> yes, n -> no) ")
+
+    starting = input("[?] Start instalation? [Y/n] ") or "Y"
     if starting == "y" or starting == "Y":
         print(f"{green}[+] started{reset_color}\n")
         for pkg in termux_py:
@@ -150,25 +139,45 @@ def termux_python():
 
     elif starting == "n" or starting == "N":
         print(f"{red}[X] Canceled!{reset_color}")
-
-
-def main():
-	# Linux
-
-    if args.linux == "py":
+    else:
         python_pkgs()
 
-	# Termux
+def main():
+    # Linux
+
+    if args.linux == "py":
+        for pkg in python:
+            print(cyan + pkg + reset_color)
+        print("\n")
+        python_pkgs()
+
+    # Termux
 
     if args.termux == "setup":
+        for command in termux_setup:
+            print(cyan + command + reset_color)
+        print("\n")
         termux_setup()
+
     elif args.termux == "requirements":
+        for requirement in termux_requirements:
+            print(cyan + requirement + reset_color)
+        print("\n")
         termux_requirements()
+
     elif args.termux == "py":
+        for pkg in termux_py:
+            print(cyan + pkg + reset_color)
+        print("\n")
         termux_python()
+
     elif args.termux == "arch":
+        print(f'{cyan} Installation of arch linux for termux {reset_color}')
+        print("\n")
         arch_termux()
 
+    else:
+        print(f'{red}[X] Nothing to do!{reset_color}')
 
 
 if __name__ == "__main__":
