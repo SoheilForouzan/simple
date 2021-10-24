@@ -94,7 +94,7 @@ def termux_setup():
 
 def termux_requirements():
     for requirement in termux_install:
-        print(requirement)
+        print(cyan + requirement + reset_color)
     print("\n")
     starting = ""
     while (starting != "y" and starting != "n"):
@@ -113,7 +113,7 @@ def termux_requirements():
 
 def termux_python():
     for pkg in termux_py:
-        print(pkg)
+        print(cyan + pkg + reset_color)
     print("\n")
     starting = ""
     while (starting != "y" and starting != "n"):
