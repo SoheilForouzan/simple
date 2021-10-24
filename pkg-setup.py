@@ -31,7 +31,7 @@ termux_install = [
 	'tor', 'neofetch','unstable-repo',
 	'x11-repo', 'python', 'python-pip'
 ]
-termux_python = [
+termux_py = [
 	'ipython', 'scapy', 'whois',
 	'pytelegrambotapi', 'telebot', 'python-dotenv',
 	'secure-smtplib', 'pyperclip3', 'random2',
@@ -109,17 +109,17 @@ def termux_requirements():
 # Termux python dependencies
 
 def termux_python():
-	for task in termux_python:
-		print(task)
+	for pkg in termux_py:
+		print(pkg)
 	print("\n")
 	starting = ''
 	while (starting != 'y' and starting != 'n'):
 		starting = input('[?] Start instalation? (y -> yes, n -> no) ')
 	if starting == "y" or starting == "Y":
 		print(f"{green}[+] started{reset_color}\n")
-		for task in termux_install:
-			print(f'{yellow}[*]{task}:{reset_color}')
-			os.system(f'pip install {task}')
+		for pkg in termux_install:
+			print(f'{yellow}[*]{pkg}:{reset_color}')
+			os.system(f'pip install {pkg}')
 			print(f'{green}[+] Task Done!{reset_color}\n')
 			
 	elif starting == "n" or starting == "N":
@@ -133,10 +133,9 @@ def main():
 		termux_setup()
 	elif args.termux == "requirements":
 		termux_requirements()
-	elif args.termux == "python":
+	elif args.termux == "py":
 		termux_python()
 
 
 if __name__ == '__main__':
 	main()
-	
