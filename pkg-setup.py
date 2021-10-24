@@ -82,7 +82,7 @@ def termux_setup():
         starting = input("[?] Start Setup? (y -> yes, n -> no) ")
     if starting == "y" or starting == "Y":
         print(f"{green}[+] started{reset_color}\n")
-        for command in termux_setup:
+        for command in termux_start:
             print(f"{yellow}[*]{command}:{reset_color}")
             os.system(command)
             print(f"{green}[+] Task Done!{reset_color}\n")
