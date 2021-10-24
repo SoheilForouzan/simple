@@ -29,7 +29,8 @@ termux_setup = [
 termux_install = [
 	'coreutils', 'openssh', 'git',
 	'tor', 'neofetch','unstable-repo',
-	'x11-repo', 'python', 'python-pip'
+	'x11-repo', 'python', 'python-pip',
+	'zsh'
 ]
 termux_py = [
 	'ipython', 'scapy', 'whois',
