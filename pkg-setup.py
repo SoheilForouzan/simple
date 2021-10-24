@@ -74,17 +74,17 @@ def python_pkgs():
 # Termux Settings Setup
 
 def termux_setup():
-    for command in termux_setup:
-        print(cyan + command + reset_color)
+    for object in termux_setup:
+        print(cyan + object + reset_color)
     print("\n")
     starting = ""
     while (starting != "y" and starting != "n"):
         starting = input("[?] Start Setup? (y -> yes, n -> no) ")
     if starting == "y" or starting == "Y":
         print(f"{green}[+] started{reset_color}\n")
-        for command in termux_setup:
-            print(f"{yellow}[*]{command}:{reset_color}")
-            os.system(command)
+        for object in termux_setup:
+            print(f"{yellow}[*]{object}:{reset_color}")
+            os.system(object)
             print(f"{green}[+] Task Done!{reset_color}\n")
 
     elif starting == "n" or starting == "N":
