@@ -25,8 +25,9 @@ python = [
 arch_pkgs = [
     'neofetch', 'bpytop', 'htop',
     'tor', 'tmux', 'virtualbox',
-    'preload', 'libreoffice-fresh',
+    'preload', 'libreoffice-fresh', 'nmap',
     'geary', 'discord', 'discover',
+    'android-tools', 'whois'
 ]
 
 # Termux section
