@@ -185,7 +185,7 @@ def main():
         for pkg in arch_pkgs:
             print(cyan + pkg + reset_color)
         print("\n")
-        python_pkgs()
+        arch_setup()
 
     # Termux
 
