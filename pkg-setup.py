@@ -22,6 +22,15 @@ python = [
     "bs4", "datetime",
 ]
 
+arch_pkgs = [
+    'neofetch', 'bpytop', 'htop',
+    'tor', 'tmux', 'virtualbox',
+    'preload', 'libreoffice-fresh', 'files',
+    'geary', 'discord', 'discover',
+    'gnome-web'
+
+]
+
 # Termux section
 termux_start = [
     "termux-setup-storage", "apt update", "apt upgrade",
@@ -50,10 +59,13 @@ termux_arch = 'pkg install wget openssl-tool proot tar -y && hash -r && wget htt
 parser = argparse.ArgumentParser()
 
 parser.add_argument("-l", "--linux",
-                    help="linux pkgs")
+                    help="Linux pkgs")
+
+parser.add_argument("-a", "--arch",
+                    help="Arch pkgs")
 
 parser.add_argument("-t", "--termux",
-                    help="termux pkgs")
+                    help="Termux pkgs")
 args = parser.parse_args()
 
 
@@ -74,6 +86,22 @@ def python_pkgs():
         print(f"{red}[X] Canceled!{reset_color}")
     else:
         python_pkgs()
+
+def arch_setup():
+    starting = input("[?] Start instalation? [Y/n] ") or "Y"
+
+    if starting == "y" or starting == "Y":
+        print(f"{green}[+] started{reset_color}\n")
+        for pkg in arch_pkgs:
+            print(f"{yellow}[*]{pkg}:{reset_color}")
+            os.system(f'pip install {pkg}')
+            print(f"{green}[+] Task Done!{reset_color}\n")
+
+    elif starting == "n" or starting == "N":
+        print(f"{red}[X] Canceled!{reset_color}")
+    else:
+        python_pkgs()
+
 
 # Termux Settings Setup
 
@@ -147,6 +175,14 @@ def main():
 
     if args.linux == "py":
         for pkg in python:
+            print(cyan + pkg + reset_color)
+        print("\n")
+        python_pkgs()
+
+    # Arch Linux
+
+    if args.arch == "pkgs":
+        for pkg in arch_pkgs:
             print(cyan + pkg + reset_color)
         print("\n")
         python_pkgs()
