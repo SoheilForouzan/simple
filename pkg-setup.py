@@ -84,6 +84,7 @@ def python_pkgs():
     else:
         python_pkgs()
 
+
 def arch_setup():
     starting = input("[?] Start instalation? [Y/n] ") or "Y"
 
@@ -120,6 +121,7 @@ def termux_setup():
 
 # Arch linux installation in termux
 
+
 def arch_termux():
 
     starting = input("[?] Start Installation? [Y/n] ") or "Y"
@@ -135,6 +137,7 @@ def arch_termux():
         python_pkgs()
 
 # Termux requirements installation
+
 
 def termux_requirements():
     starting = input("[?] Start instalation? [Y/n] ") or "Y"
@@ -152,6 +155,7 @@ def termux_requirements():
 
 # Termux python dependencies
 
+
 def termux_python():
 
     starting = input("[?] Start instalation? [Y/n] ") or "Y"
@@ -166,6 +170,7 @@ def termux_python():
         print(f"{red}[X] Canceled!{reset_color}")
     else:
         python_pkgs()
+
 
 def main():
     # Linux
@@ -185,9 +190,8 @@ def main():
             print("\n")
             arch_setup()
         else:
-            print(f"{yellow}[!] Run as root in order to work currectly!{reset_color}\n")
-
-
+            print(
+                f"{yellow}[!] Run as root in order to work currectly!{reset_color}\n")
 
     # Termux
 
