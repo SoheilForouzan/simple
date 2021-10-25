@@ -25,10 +25,8 @@ python = [
 arch_pkgs = [
     'neofetch', 'bpytop', 'htop',
     'tor', 'tmux', 'virtualbox',
-    'preload', 'libreoffice-fresh', 'files',
+    'preload', 'libreoffice-fresh',
     'geary', 'discord', 'discover',
-    'gnome-web'
-
 ]
 
 # Termux section
@@ -72,7 +70,6 @@ args = parser.parse_args()
 # Linux Python pkg installation
 
 def python_pkgs():
-
     starting = input("[?] Start instalation? [Y/n] ") or "Y"
 
     if starting == "y" or starting == "Y":
@@ -94,7 +91,7 @@ def arch_setup():
         print(f"{green}[+] started{reset_color}\n")
         for pkg in arch_pkgs:
             print(f"{yellow}[*]{pkg}:{reset_color}")
-            os.system(f'pip install {pkg}')
+            os.system(f'pacman -S {pkg}')
             print(f"{green}[+] Task Done!{reset_color}\n")
 
     elif starting == "n" or starting == "N":
@@ -102,7 +99,7 @@ def arch_setup():
     else:
         python_pkgs()
 
-
+    os.system("exit")
 # Termux Settings Setup
 
 
@@ -182,10 +179,15 @@ def main():
     # Arch Linux
 
     if args.arch == "pkgs":
-        for pkg in arch_pkgs:
-            print(cyan + pkg + reset_color)
-        print("\n")
-        arch_setup()
+        if os.geteuid() == 0:
+            for pkg in arch_pkgs:
+                print(cyan + pkg + reset_color)
+            print("\n")
+            arch_setup()
+        else:
+            print(f"{yellow}[!] Run as root in order to work currectly!{reset_color}\n")
+
+
 
     # Termux
 
