@@ -52,7 +52,6 @@ termux_py = [
 
 termux_arch = 'pkg install wget openssl-tool proot tar -y && hash -r && wget https://raw.githubusercontent.com/EXALAB/AnLinux-Resources/master/Scripts/Installer/Arch/armhf/arch.sh && bash arch.sh'
 
-
 # Script Flags
 
 parser = argparse.ArgumentParser()
@@ -67,8 +66,8 @@ parser.add_argument("-t", "--termux",
                     help="Termux pkgs")
 args = parser.parse_args()
 
-
 # Linux Python pkg installation
+
 
 def python_pkgs():
     starting = input("[?] Start instalation? [Y/n] ") or "Y"
@@ -84,6 +83,8 @@ def python_pkgs():
         print(f"{red}[X] Canceled!{reset_color}")
     else:
         python_pkgs()
+
+# Package installation for arch linux
 
 
 def arch_setup():
@@ -102,6 +103,7 @@ def arch_setup():
         python_pkgs()
 
     os.system("exit")
+
 # Termux Settings Setup
 
 
@@ -177,47 +179,63 @@ def main():
     # Linux
 
     if args.linux == "py":
-        for pkg in python:
-            print(cyan + pkg + reset_color)
-        print("\n")
-        python_pkgs()
-
+        try:
+            for pkg in python:
+                print(cyan + pkg + reset_color)
+            print("\n")
+            python_pkgs()
+        except KeyboardInterrupt:
+            print(f"\n{red}[X] Canceled!{reset_color}")
     # Arch Linux
 
     if args.arch == "pkgs":
-        if os.geteuid() == 0:
-            for pkg in arch_pkgs:
-                print(cyan + pkg + reset_color)
-            print("\n")
-            arch_setup()
-        else:
-            print(
-                f"{yellow}[!] Run as root in order to work currectly!{reset_color}\n")
-
+        try:
+            if os.geteuid() == 0:
+                for pkg in arch_pkgs:
+                    print(cyan + pkg + reset_color)
+                print("\n")
+                arch_setup()
+            else:
+                print(
+                    f"{yellow}[!] Run as root in order to work currectly!{reset_color}\n")
+        except KeyboardInterrupt:
+            print(f"\n{red}[X] Canceled!{reset_color}")
     # Termux
 
     if args.termux == "setup":
-        for command in termux_setup:
-            print(cyan + command + reset_color)
-        print("\n")
-        termux_setup()
+        try:
+            for command in termux_setup:
+                print(cyan + command + reset_color)
+            print("\n")
+            termux_setup()
+        except KeyboardInterrupt:
+            print(f"\n{red}[X] Canceled!{reset_color}")
 
     elif args.termux == "requirements":
-        for requirement in termux_requirements:
-            print(cyan + requirement + reset_color)
-        print("\n")
-        termux_requirements()
+        try:
+            for requirement in termux_requirements:
+                print(cyan + requirement + reset_color)
+            print("\n")
+            termux_requirements()
+        except KeyboardInterrupt:
+            print(f"\n{red}[X] Canceled!{reset_color}")
 
     elif args.termux == "py":
-        for pkg in termux_py:
-            print(cyan + pkg + reset_color)
-        print("\n")
-        termux_python()
+        try:
+            for pkg in termux_py:
+                print(cyan + pkg + reset_color)
+            print("\n")
+            termux_python()
+        except KeyboardInterrupt:
+            print(f"\n{red}[X] Canceled!{reset_color}")
 
     elif args.termux == "arch":
-        print(f'{cyan} Installation of arch linux for termux {reset_color}')
-        print("\n")
-        arch_termux()
+        try:
+            print(f'{cyan} Installation of arch linux for termux {reset_color}')
+            print("\n")
+            arch_termux()
+        except KeyboardInterrupt:
+            print(f"\n{red}[X] Canceled!{reset_color}")
 
     else:
         print(f'{red}[X] Nothing to do!{reset_color}')
