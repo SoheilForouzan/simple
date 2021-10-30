@@ -1,5 +1,6 @@
 import argparse
 import os
+from rich.progress import track
 
 # Terminal colors
 
@@ -74,7 +75,7 @@ def python_pkgs():
 
     if starting == "y" or starting == "Y":
         print(f"{green}[+] started{reset_color}\n")
-        for pkg in python:
+        for pkg in track(python, description="Installing..."):
             print(f"{yellow}[*]{pkg}:{reset_color}")
             os.system(f'pip install {pkg}')
             print(f"{green}[+] Task Done!{reset_color}\n")
@@ -92,7 +93,7 @@ def arch_setup():
 
     if starting == "y" or starting == "Y":
         print(f"{green}[+] started{reset_color}\n")
-        for pkg in arch_pkgs:
+        for pkg in track(arch_pkgs, description="Installing..."):
             print(f"{yellow}[*]{pkg}:{reset_color}")
             os.system(f'pacman -S {pkg}')
             print(f"{green}[+] Task Done!{reset_color}\n")
@@ -112,7 +113,7 @@ def termux_setup():
     starting = input("[?] Start Setup? [Y/n] ") or "Y"
     if starting == "y" or starting == "Y":
         print(f"{green}[+] started{reset_color}\n")
-        for command in termux_start:
+        for command in track(termux_start, description="Installing..."):
             print(f"{yellow}[*]{command}:{reset_color}")
             os.system(command)
             print(f"{green}[+] Task Done!{reset_color}\n")
@@ -146,7 +147,7 @@ def termux_requirements():
     starting = input("[?] Start instalation? [Y/n] ") or "Y"
     if starting == "y" or starting == "Y":
         print(f"{green}[+] started{reset_color}\n")
-        for requirement in termux_install:
+        for requirement in track(termux_install, description="Installing..."):
             print(f"{yellow}[*]{requirement}:{reset_color}")
             os.system(f"pkg install {requirement}")
             print(f"{green}[+] Task Done!{reset_color}\n")
@@ -164,7 +165,7 @@ def termux_python():
     starting = input("[?] Start instalation? [Y/n] ") or "Y"
     if starting == "y" or starting == "Y":
         print(f"{green}[+] started{reset_color}\n")
-        for pkg in termux_py:
+        for pkg in track(termux_py, description="Installing..."):
             print(f"{yellow}[*]{pkg}:{reset_color}")
             os.system(f"pip install {pkg}")
             print(f"{green}[+] Task Done!{reset_color}\n")
@@ -242,4 +243,5 @@ def main():
 
 
 if __name__ == "__main__":
+    os.system("pip install rich")
     main()
