@@ -32,7 +32,7 @@ arch_pkgs = [
 
 # Termux section
 termux_start = [
-    "termux-setup-storage", "apt update", "apt upgrade",
+    "pkg update", "pkg upgrade", "termux-setup-storage"
 ]
 
 termux_install = [
@@ -45,7 +45,8 @@ termux_py = [
     "ipython", "scapy", "whois",
     "pytelegrambotapi", "telebot", "python-dotenv",
     "secure-smtplib", "pyperclip3", "random2",
-    "datetime", "bs4", "paramiko"
+    "datetime", "bs4", "paramiko",
+    "requests"
 ]
 
 # Arch on termux
@@ -213,7 +214,7 @@ def main():
 
     elif args.termux == "requirements":
         try:
-            for requirement in termux_requirements:
+            for requirement in termux_install:
                 print(cyan + requirement + reset_color)
             print("\n")
             termux_requirements()
