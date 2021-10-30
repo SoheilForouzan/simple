@@ -1,6 +1,5 @@
 import argparse
 import os
-from rich.progress import track
 
 # Terminal colors
 
@@ -205,7 +204,7 @@ def main():
 
     if args.termux == "setup":
         try:
-            for command in termux_setup:
+            for command in termux_start:
                 print(cyan + command + reset_color)
             print("\n")
             termux_setup()
@@ -244,4 +243,6 @@ def main():
 
 if __name__ == "__main__":
     os.system("pip install rich")
+    from rich.progress import track
+
     main()
